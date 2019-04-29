@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
     public void showAbility(View view) {
         System.out.println("Ability is being called");
         SearchView sv = findViewById(R.id.askNum);
-        int number = parseInt(sv.getQuery());
+        int number = Integer.valueOf(sv.getQuery().toString());
         TextView textView = findViewById(R.id.caption);
-        textView.setText(pokemonNames[5]);
+        textView.setText(pokemonNames[number]);
     }
 
     public void showType(View view) {
