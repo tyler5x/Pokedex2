@@ -4,56 +4,30 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Data {
-    @SerializedName("count")
-    private Integer count;
-    @SerializedName("previous")
-    private Object previous;
     @SerializedName("results")
     private List<Pokemon> results = null;
-    @SerializedName("next")
-    private String next;
+    @SerializedName("types")
+    private List<Type> types = null;
+    @SerializedName("abilities")
+    private List<Ability> abilities = null;
 
-    public Integer getCount() {
-        return count;
+    public List<Type> getTypes() {
+        return types;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
-    public Object getPrevious() {
-        return previous;
-    }
-
-    public void setPrevious(Object previous) {
-        this.previous = previous;
+    public List<Ability> getAbilities() {
+        return abilities;
     }
 
     public List<Pokemon> getResults() {
         return results;
     }
 
-    public void setResults(List<Pokemon> results) {
-        this.results = results;
-    }
-
-    public String getNext() {
-        return next;
-    }
-
-    public void setNext(String next) {
-        this.next = next;
-    }
-
-
-    public class Pokemon {
-
+    public class Type {
         @SerializedName("url")
         private String url;
         @SerializedName("name")
         private String name;
-        private String ability;
-        private String type;
 
         public String getUrl() {
             return url;
@@ -70,21 +44,53 @@ public class Data {
         public void setName(String name) {
             this.name = name;
         }
+    }
 
-        public String getAbility() {
-            return ability;
+    public class Ability {
+        @SerializedName("url")
+        private String url;
+        @SerializedName("name")
+        private String name;
+
+        public String getUrl() {
+            return url;
         }
 
-        public void setAbility(String ability) {
-            this.ability = ability;
+        public void setUrl(String url) {
+            this.url = url;
         }
 
-        public String getType() {
-            return type;
+        public String getName() {
+            return name;
         }
 
-        public void setType(String type) {
-            this.type = type;
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    public class Pokemon {
+
+        @SerializedName("url")
+        private String url;
+        @SerializedName("name")
+        private String name;
+
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
     }
 }
