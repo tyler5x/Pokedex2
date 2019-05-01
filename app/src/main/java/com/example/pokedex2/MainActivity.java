@@ -8,6 +8,11 @@ import android.util.Log;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import me.sargunvohra.lib.pokekotlin.client.PokeApi;
+import me.sargunvohra.lib.pokekotlin.client.PokeApiClient;
+import me.sargunvohra.lib.pokekotlin.model.PokemonAbility;
+import me.sargunvohra.lib.pokekotlin.model.PokemonSpecies;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -130,6 +135,10 @@ public class MainActivity extends AppCompatActivity {
         int number = 0;
         try {
             number = Integer.valueOf(sv.getQuery().toString());
+            PokeApi pokeApi = new PokeApiClient();
+            PokemonSpecies temp = pokeApi.getT(number);
+            System.out.println("temp");
+            //PokemonAbility store =
             //makeCall(pokemonURL[number]);
             if (number == 1) {
                 textView.setText("bulbasaur");
