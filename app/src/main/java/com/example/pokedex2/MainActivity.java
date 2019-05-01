@@ -1,6 +1,7 @@
 package com.example.pokedex2;
 
 import android.annotation.SuppressLint;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,8 +10,12 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import me.sargunvohra.lib.pokekotlin.client.PokeApi;
 import me.sargunvohra.lib.pokekotlin.client.PokeApiClient;
+import me.sargunvohra.lib.pokekotlin.model.Ability;
+import me.sargunvohra.lib.pokekotlin.model.NamedApiResourceList;
 import me.sargunvohra.lib.pokekotlin.model.PokemonAbility;
 import me.sargunvohra.lib.pokekotlin.model.PokemonSpecies;
 import retrofit2.Call;
@@ -36,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         Pokeapi pokeapi = retrofit.create(Pokeapi.class);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
+        StrictMode.setThreadPolicy(policy);
         Call<Data> call = pokeapi.getPokemonNameAndPic();
 
         call.enqueue(new Callback<Data>() {
@@ -136,8 +143,9 @@ public class MainActivity extends AppCompatActivity {
         try {
             number = Integer.valueOf(sv.getQuery().toString());
             PokeApi pokeApi = new PokeApiClient();
-            PokemonSpecies temp = pokeApi.getT(number);
-            System.out.println("temp");
+            PokemonSpecies temp = pokeApi.getPokemonSpecies(number);
+            Ability yo = pokeApi.getAbility(number);
+            System.out.println(temp.toString());
             //PokemonAbility store =
             //makeCall(pokemonURL[number]);
             if (number == 1) {
@@ -147,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             textView.setText("Please enter a valid pokemon number.");
+            System.out.println(e);
         }
     }
 }
